@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Curso Vue.js - Hola Mundo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+    <div id="app">
+        Hola {{ nombre }}
+        <!-- condicional: https://vuejs.org/v2/guide/conditional.html -->
+        <a v-if="mostrar" v-bind:href="url" target="_blank">{{ pagina }}</a>
+        <!-- Version Corta ver: https://vuejs.org/v2/api/#v-bind-->
+        <!--<a v-if="mostrar" :href="url" target="_blank">{{ pagina }}</a> -->
+
+        <!-- Usando Template para mostrar un grupo de elementos-->
+        <template v-if="mostrar2">
+            <h1>Titulo 1</h1>
+            <h2>Titulo 2</h2>
+        </template>
+
+        <!-- Directiva v-show -->
+        <div v-show="mostrar3">
+            Uso De Directiva V-SHOW <b>Visble</b> cuando es true
+        </div>
+        <div v-show="!mostrar3">
+            Uso De Directiva V-SHOW <b>oculto</b> cuando es true
+        </div>
+
+        <!-- Conditional rendering: https://vuejs.org/v2/guide/conditional.html-->
+
+        <!-- 
+           Uso de v-if y de v-else
+        -->
+        <h1 v-if="mostrar4">Yes</h1>
+        <h1 v-else>No</h1>
+
+        <div v-if="Math.random() > 0.5">
+            Now you see me
+        </div>
+        <div v-else>
+            Now you don't
+        </div>
+
+        <!-- Uso de v-else-if -->
+        <div v-if="mostrar5 === 1">
+            1
+        </div>
+        <div v-else-if="mostrar5 === 2">
+            2
+        </div>
+        <div v-else-if="mostrar5 === 3">
+            3
+        </div>
+        <div v-else>
+            Not 1/2/3
+        </div>
+
+        <!-- Uso de la etiqueta key -->
+        <!--
+            Vue es muy eficiente dado que solo cambia aquellos elementos del DOM que son necesiarios cambiar
+            por tal motivo si el if no afecta todo un elemento no lo cambiara en el siguiente ejemplo si se cambia
+            el tipo de formulario (presinando el boton) no desaparecera la entrada del usuario
+        -->
+        <hr />
+        <template v-if="loginType === 'username'">
+            <label>Username</label>
+            <input placeholder="Enter your username">
+        </template>
+        <template v-else>
+            <label>Email</label>
+            <input placeholder="Enter your email address">
+        </template>
+        <button onclick="if( app.loginType === 'username' ){ app.loginType='email '} else { app.loginType = 'username'}">
+            Cambiar tipo de formulario
+        </button>
+        <hr />
+        <!-- 
+            Si el comportamiento que se desea es que cambia todo el elemento ( y se borre lo ingresado 
+            por el usuario se debe agregar el atributo key con un valor unico para cada elemento que se desea 
+            cambiar ejemplo:
+        
+        -->
+
+        <template v-if="loginType2 === 'username'">
+            <label>Username</label>
+            <input placeholder="Enter your username" key="username-input">
+        </template>
+        <template v-else>
+            <label>Email</label>
+            <input placeholder="Enter your email address" key="email-input">
+        </template>
+        <button onclick=" app.loginType2 = app.loginType2 === 'username' ? 'email':'username'">
+            Cambiar tipo de formulario
+        </button>
+
+    </div>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+        let app = new Vue({
+            el: '#app',
+            data: {
+                nombre: 'Felix E. Orduz G.',
+                url: 'https://github.com/felix-orduz',
+                pagina: 'GitHub',
+                mostrar: true,
+                mostrar2: true,
+                mostrar3: true,
+                mostrar4: false,
+                mostrar5: 2,
+                loginType: 'username',
+                loginType2: 'username'
+            }
+        });
+    </script>
+</body>
+
+</html>

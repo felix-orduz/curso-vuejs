@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Curso Vue.js - Hola Mundo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+</head>
+<body>
+    <div id="app">
+        Hola {{ nombre }}
+        <a v-bind:href="url" target="_blank">{{ pagina }}</a>
+        <!-- Version Corta ver: https://vuejs.org/v2/api/#v-bind-->
+        <a :href="url" target="_blank">{{ pagina }}</a>
+    </div>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script  type="text/javascript">
+        let app = new Vue({
+            el: '#app',
+            data: {
+                nombre: 'Felix E. Orduz G.',
+                url: 'https://github.com/felix-orduz',
+                pagina: 'Perfil GitHub'
+            }
+        });
+    </script>
+</body>
+</html>

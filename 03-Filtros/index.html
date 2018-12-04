@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<div id="app">
+    <h1>Ejemplo Filtros</h1>
+    <h2>{{'SubTitulo Mayusculas' | uppercase}}</h2>
+    <h2>{{'SubTitulo Minusculas' | lowercase}}</h2>
+    <h2>{{' sUBtITULO iNITcAP A ' | initcap}}</h2>
+    <h2>{{' sUBtITULO iNITcAP B ' | initcap2}}</h2>
+    <h2>{{' sUBtITULO iNITcAP c ' | capitalize}}</h2>
+    <h2>{{' sUBtITULO iNITcAP d ' | capitalize2}}</h2>
+    <h2>{{' sUBtITULO iNITcAP e ' | capitalize3}}</h2>
+    <p>Se crean una serie de filtros para modificar una cadena de texto, los fitros initcap y capitalize son diferentes formas de convertir la primera letra de cada palbra en mayusculas y las demas en minusculas.</p>
+</div>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+        let app = new Vue({
+            el: '#app',
+            data: {
+            },
+            filters: {
+                uppercase: function (str) {
+                    return str.toUpperCase();
+                },
+                lowercase: function (str) {
+                    return str.toLowerCase();
+                },
+                initcap: function (str) {
+                    let text = str.toLowerCase();
+                    text = text[0].toUpperCase()+text.slice(1);
+                    for (let i = 1; i < text.length; i++) {
+                        console.log(text[i - 1], text[i - 1] === ' ');
+                        if (text[i - 1] === ' ') {
+                            text = text.slice(0,i)+text[i].toUpperCase()+text.slice(i+1);
+                        }
+                    }
+                    text[0] = 'Z';
+                    return text;
+                },
+                initcap2: function(str){
+                    let text = str.toLowerCase();
+                    text = text[0].toUpperCase()+text.slice(1);
+                    var res = text.replace(/\s[a-z]/g,function (val) {
+                        return val.toUpperCase();
+                    })
+                    return res;
+                },
+                capitalize: (str) => {
+                    return str.split(' ')
+                    .map(x => (x.length>0? x[0].toUpperCase():' ') + x.slice(1).toLowerCase())
+                    .join(' ');
+                },
+                capitalize2: (str) => str.toLowerCase().replace(/\s[a-z]/g, str => str.toUpperCase()),
+                capitalize3: (str) => str.toLowerCase().replace(/\b\w/g, str => str.toUpperCase())
+            }
+        });
+    </script>
+</body>
+
+</html>

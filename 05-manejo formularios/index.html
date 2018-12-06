@@ -14,6 +14,15 @@
             <input type="text" v-model="nombre" />
             Nombre en mayusculas: {{nombre | uppercase}}
             <br />
+            <input type="text" v-model.lazy="apellido" />
+            apellido en mayusculas: {{apellido | uppercase}}
+            <br />
+            <input v-model.number="edad" type="number">
+            Edad: {{edad}}
+            <br />
+            <input type="text" v-model.trim="direccion" />
+            Direccion: {{direccion}}
+            <br />
             Preferencias:
             <input v-model="preferencias" type="checkbox" id="chkLeer" value="leer" />
             <label for="chkLeer">Leer</label>
@@ -21,7 +30,7 @@
             <label for="chkEscribir">Escribir</label>
             <input v-model="preferencias" type="checkbox" id="chkPensar" value="pensar" />
             <label for="chkPensar">Pensar</label>
-            <button type="submit" >Enviar</button>
+            <button type="submit">Enviar</button>
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -31,7 +40,10 @@
             data: {
                 contador: 0,
                 nombre: '',
-                preferencias: []
+                preferencias: [],
+                apellido: '',
+                edad: null,
+                direccion: '    a     b    '
             },
             filters: {
                 uppercase: function (str) {

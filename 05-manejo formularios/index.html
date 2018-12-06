@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <form @submit.prevent="enviar">
+            <input type="text" v-model="nombre" />
+            Nombre en mayusculas: {{nombre | uppercase}}
+            <br />
+            Preferencias:
+            <input v-model="preferencias" type="checkbox" id="chkLeer" value="leer" />
+            <label for="chkLeer">Leer</label>
+            <input v-model="preferencias" type="checkbox" id="chkEscribir" value="escribir" />
+            <label for="chkEscribir">Escribir</label>
+            <input v-model="preferencias" type="checkbox" id="chkPensar" value="pensar" />
+            <label for="chkPensar">Pensar</label>
+            <button type="submit" >Enviar</button>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+        let app = new Vue({
+            el: '#app',
+            data: {
+                contador: 0,
+                nombre: '',
+                preferencias: []
+            },
+            filters: {
+                uppercase: function (str) {
+                    return str.toUpperCase();
+                }
+            },
+            methods: {
+                sumar: function () {
+                    this.contador++;
+                },
+                restar: function () {
+                    this.contador--;
+                },
+                enviar: function () {
+                    console.log(this.preferencias);
+                }
+
+            }
+        });
+    </script>
+</body>
+
+</html>
